@@ -3,6 +3,7 @@
 <ul class="heroes">
     <li *ngFor="let hero of heroes" [class.selected]="hero===selectedHero" (click)="onSelect(hero)">
         <span class="badge">{{hero.id}}</span> {{hero.name}}
+        <button class="delete-button" (click)="deleteHero(hero,$event)"></button>
     </li>
 </ul>
 <div *ngIf="selectedHero">
@@ -10,4 +11,9 @@
         {{selectedHero.name|uppercase}} is my hero
     </h2>
     <button (click)="gotoDetail()">View Details</button>
+</div>
+<div class="error" *ngif="error">{{error}}</div>
+<button (click)="addHero()">Add New Hero</button>
+<div *ngif="addingHero">
+    <my-hero-detail (close)="close($event)"></my-hero-detail>
 </div>
